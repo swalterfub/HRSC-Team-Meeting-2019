@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Freie Universitaet Berlin Status Report</title>
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
@@ -25,8 +25,145 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!--<section data-markdown data-background-image="images/mapserver-overview.png" data-background-opacity=0.3></section>-->
+				<!--<section data-markdown data-background-iframe="http://maps.planet.fu-berlin.de" data-background-interactive>-->
+				<section data-markdown>
+					## HRSC TEAM MEETING 2019
+					### Status of FU-Berlin projects
+					---
+					- #### Mosaicking
+					- #### MapServer
+					---
+					Sebastian Walter - Nantes, 10/29/2019
+				</section>
+				<section>
+					<section data-markdown>
+						## Mosaic generation
+						### Updates
+					</section>
+					<section data-background="images/mc11-greg.jpg" data-background-size="contain">
+					<div style="position: absolute; width: 40%; left: 0px; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; font-size: 32px; text-align: left;">
+						<h2>Development updates</h2>
+						<p>Recoding of image sequence management</p>
+						<ul>
+							<li>master file</li>
+							<li>extract mosaic list, sort by adj_bgsd</li>
+							<li>merge back modified list</li>
+							<li>QGIS solution for sorting</li>
+						</ul>
+							<p>Reprocessed MC11 in one piece not (E/W):<br> ~ 100GB pan, 170 GB hsv</p>
+					</div>
+					<div style="position: absolute; width: 50%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.8); color: #fff; padding: 0px; font-size: 32px; text-align: left;">
+						<pre><code class="hljs" data-trim >
+#master adjustments file
+n_images=206
+ 
+sequence={image,bgsd,adj_bgsd,contrast_stretch_percent,fill_gaps
+0018_0000  0.0110  0.0598  +50            -
+0103_0009  0.0114  0.0547  +60  s1-s2-p1-p2
+0155_0001  0.0107  0.0122  +60           s2
+0401_0001  0.0343       -  +35            -
+0890_0000  0.0141       -  +30        s1-s2
+0901_0000  0.0130       -  +20            -
+0912_0000  0.0125       -  +20            -
+0923_0000  0.0121       -  +20            -
+						</code></pre>
+						</div>
+					</section>
+					<section>
+						
+						<div style="position: absolute; width: 40%; left: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; font-size: 32px; text-align: left;">
+						<h2>New level-3 mosaic</h2>
+						<p>Sequenced, processed HRSC mosaic mc21 level3 (195 images)</p>
+						</div>
+						<img src="images/mc21-lev3.jpg" alt="MC21" style="width: 80%; height: 80%">
+					</section>
+					<section data-background="images/min-vs-inci-code.png" background-size="contain" data-background-opacity=0.5>
+					<div style="position: absolute; width: 40%; left: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; font-size: 32px; text-align: left;">
+						<h2>Correction for topography-induced illumination effects</h2>
+					</div>
+					<div style="position: absolute; width: 50%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(255,255,255, 0.8); color: #000; padding: 20px; font-size: 24px; text-align: left;">
+					<p>Top-of-atmosphere (TOA) vs. Minnaert albedo</p>
+					<img src="images/minnaert-vs-incidence.png" alt="HMC scheme">
+					</section>
+					<section data-background="images/topocor-tei-nd.png">
+					<div style="position: absolute; width: 40%; left: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; font-size: 32px; text-align: left;">
+						<h2>Correction for topography-induced illumination effects</h2>
+					</div>
+					<div style="position: absolute; width: 50%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(255,255,255, 0.8); color: #000; padding: 20px; font-size: 24px; text-align: left;">
+					<p>Top-of-atmosphere (TOA) vs. Minnaert albedo</p>
+					<img src="images/toa-vs-minneart.png" alt="HMC scheme">
+					</section>
+					<section data-background="images/tei-nd.png"></section>
+					<section data-background="images/mc11-nd-cut.png"></section>
+					<section data-background-iframe="http://maps.planet.fu-berlin.de/webtopo/" data-background-interactive></section>
+					<section data-background="images/mc11-tei-clip-hs.jpg"></section>
+				</section>
+				<section>
+					<section data-markdown>
+						## MapServer
+						### Updates
+					</section>
+					<section data-markdown data-background="images/Dell-EMC-PowerEdge-M640-Top.jpg" data-background-opacity=0.1>
+						## New server hardware
+						- 20 cores (2 x Intel 4114 CPU @ 2.2 GHz)
+						- 196 GB RAM
+						- 500 GB SSD cache
+						- 100 TB data store
+					</section>
+					<section data-markdown>
+						## Software migration
+						- House cleaning
+						- One instance (no iMars, team-internal, specials)
+						- Fully automatic, always up-to-date, no manual interaction
+						- **All data immediately available to world** (2-3 day delay)
+						- SSL encrypted (https)
+					</section>
+					<section>
+						<h2>Updated level-5 mosaics (v01)</h2>
+						<h3>Panchromatic</h3>
+						<img src="images/MC11-pan.png" alt="HSV">
+					</section>
+					<section>
+						<h2>Updated level-5 mosaics (v01)</h2>
+						<h3>Pan-sharpened color (HSV)</h3>
+						<img src="images/MC11-hsv.png" alt="HSV">
+					</section>
+					<section>
+						<h2>Updated level-5 mosaics (v01)</h2>
+						<h3>DTM</h3>
+						<img src="images/MC11-dtm.png" alt="DTM">
+					</section>
+					<section >
+					<div style="position: absolute; width: 40%; left: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.8); color: #fff; padding: 20px; font-size: 32px; text-align: left;">
+						<h3>Level-5 download layer</h3>
+						<h4>HMC-30 scheme</h4>
+					</div>
+					<img src="images/hmc-dl.png" alt="HMC scheme">
+					</section>
+					<section>
+						<h2>Level-4 preliminary</h2>
+						<h3>Coverage available as pan-sharpened color</h3>
+						<img src="images/hrsc4.png" alt="HMC scheme">
+					</section>
+					<section data-markdown>
+						## New default settings
+						- Level-3 as default
+						- Resolution < 400 m/px
+						- Time slider end: today
+						- Changed design of footprints:
+						  - Filled
+						  - Transparency with slider
+					</section>
+				</section>
+				
+				<section data-background="images/vicar-github.png" background-size="contain">
+				
+				<div style="position: absolute; width: 40%; right: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.5), 0 5px 25px rgba(0,0,0,0.2); background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px; font-size: 32px; text-align: left;">
+					<h2>GDAL VICAR plugin</h2>
+					<p>Commited yesterday!</p>
+				</div>
+				</section>
 			</div>
 		</div>
 
@@ -37,11 +174,24 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				slideNumber: true,
+				hash: true,
+				history: true,
+				preloadIframes: true,
+				defaultTiming: 120,
+				previewLinks: true,
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				backgroundTransition: 'none', // none/fade/slide/convex/concave/zoom
+				parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+				width: 1920,
+				height: 1200,
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
+					{ src: 'plugin/highlight/highlight.js', async: true },
+					// Zoom in and out with Alt+click
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
 				]
 			});
 		</script>
